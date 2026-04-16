@@ -1,0 +1,72 @@
+{
+    "title_onboard1":"Discover Services or Promote Your Own",
+    "description_onboard1":"Looking for services or offering them? Easily browse categories or post your own ads to reach a wide audience",
+    "title_onboard2":"Smart Solutions for Every Project",
+    "description_onboard2":"Whether it's plumbing, electrical work, interior design, or general maintenance—our platform connects you with trusted experts.",
+    "previous":"Previous",
+    "next":"Next",
+    "finish":"Finish",
+
+
+    "home":"Home",
+    "notify":"notifications",
+    "ads":"My Ads",
+    "orders":"Orders",
+
+
+    "category1":"View All ",
+    "category2":"Categories ",
+
+
+    "sub1":"Equipment ",
+    "sub2":"Sub Category",
+
+
+    "search":"Search any item...",
+
+
+    "title":"Login to your ",
+    "title2":"Account ",
+    "subtitle":"Welcome back! Log in to continue",
+    "email":"Email Address",
+    "pass":"Password",
+    "forgot_pass":"Forgot Password ?",
+    "login":"Login",
+    "ques-login":"Don’t have an account ? ",
+    "register":"Register",
+
+
+    "title1":"Create Your ",
+    "reg-subtitle":"Fill your information to get started",
+    "first":"First Name ",
+    "last":"Last Name ",
+    "phone-reg":"Write Email or phone number",
+    "confirm":"Confirm Password",
+    "agree":"I agree with ",
+    "terms":"terms & policies",
+    "already-have":"Already have an account?",
+
+
+    "otp_title":"Verification Code",
+    "otp_subtitle":"Enter the 6-digit code sent to your email",
+    "Verify":"Verify",
+
+    
+    "skip":"Skip",
+
+
+    "header1":"All the Equipment and Services",
+    "header2":"You Need",
+    "slider":"Elevate your living standard\nwith exclusive discounts",
+    "button":"Grab Your Discount",
+
+    "categories":"Categories",
+
+    "show":"Show All",
+
+    "tools":"Top Tools & Equipment's",
+
+    "services":"Top Construction Services",
+    
+    "items":"Top Items"
+}
