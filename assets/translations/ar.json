@@ -32,6 +32,11 @@
     "login":"تسجيل دخول",
     "ques-login":"لا تمتلك حساباً ؟ ",
     "register":"إنشاء حساب",
+    "reset_password_title":"إعادة تعيين كلمة المرور",
+    "reset_password_subtitle":"أدخل كلمة المرور الجديدة",
+    "new_password":"كلمة المرور الجديدة",
+    "confirm_password":"تأكيد كلمة المرور الجديدة",
+    "reset_password_button":"إعادة تعيين كلمة المرور",
 
     "otp_title":"رمز التحقق",
     "otp_subtitle":"أدخل الرمز المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",

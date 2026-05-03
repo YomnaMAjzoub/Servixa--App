@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class AppColors {
+  static const Color mainScreen = Color(0xFFF7F7F7);
   static const Color main50 = Color(0xfff0ebf7);
   static const Color main100 = Color(0xfff0ebf7);
   static const Color main200 = Color(0xffbba3dc);

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomFormField extends StatelessWidget {
- const CustomFormField({
+  const CustomFormField({
     required this.width,
     required this.height,
     required this.hint,
@@ -23,8 +23,9 @@ class CustomFormField extends StatelessWidget {
     this.enable,
     super.key,
   });
+
   final TextEditingController? controller;
- final bool? enable;
+  final bool? enable;
   final double width;
   final double height;
   final TextInputType keyboard;
@@ -40,6 +41,7 @@ class CustomFormField extends StatelessWidget {
   final bool obscuretext;
   final BoxConstraints? prefixConstraints;
   final EdgeInsetsGeometry? contentpadding;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -50,7 +52,10 @@ class CustomFormField extends StatelessWidget {
         keyboardType: keyboard,
         textInputAction: inputAction,
         obscureText: obscuretext,
-        maxLines: maxLines,
+
+        // ✅ الحل هون
+        maxLines: obscuretext ? 1 : (maxLines ?? 1),
+
         decoration: InputDecoration(
           border: border,
           focusedBorder: focused,

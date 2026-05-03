@@ -216,25 +216,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   obscuretext: obscure,
                 ),
-                TextButton(
-                 onPressed: () {
-    if (emailController.text.isEmpty) {
-      Get.snackbar('Error', 'Enter your email first');
-      return;
-    }
-
-    authController.forgetPassword(
-      emailController.text,
-      (msg) {
-        Get.toNamed(AppRouter.otp, arguments: {'email': emailController.text});
-      },
-      (err) {
-        Get.snackbar('Error', err);
-      },
-    );
-  },
-        child: Text('forgot_pass'.tr(),
-        style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: AppColors.grey600))),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                   onPressed: () {
+                      if (emailController.text.isEmpty) {
+                        Get.snackbar('Error', 'Enter your email first');
+                        return;
+                      }
+                  
+                      authController.forgetPassword(
+                        emailController.text,
+                        (msg) {
+                          Get.toNamed(AppRouter.otp, arguments: {'email': emailController.text});
+                        },
+                        (err) {
+                          Get.snackbar('Error', err);
+                        },
+                      );
+                    },
+                          child: Text('forgot_pass'.tr(),
+                          style: GoogleFonts.roboto(fontSize:14,fontWeight: FontWeight.w500,color: AppColors.grey600))),
+                ),
+                //SizedBox(height: MediaQuery.of(context).size.height * 0.014),
              Obx(
                    () {
                     return authController.isloading.value?Center(child: CircularProgressIndicator(color: AppColors.main500,))

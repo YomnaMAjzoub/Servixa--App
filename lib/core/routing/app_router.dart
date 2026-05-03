@@ -13,4 +13,5 @@ class AppRouter {
   static const search = '/search';
   static const mainProfile = '/main-profile';
   static const updateProfile = '/update-profile';
+  static const resetPassword = '/reset-password'; 
 }

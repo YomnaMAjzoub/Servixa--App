@@ -5,8 +5,13 @@ import 'package:get/get.dart';
 
 class AuthController extends GetxController {
   RxBool isloading = false.obs;
-  RxBool obscure = false.obs;
-  RxBool checked = false.obs;
+ RxBool obscurePassword = true.obs;
+ RxBool obscureConfirm = true.obs;
+  RxBool obscureNewPassword = true.obs;
+  RxBool obscureConfirmPassword = true.obs;
+  RxBool obscureRegisterPassword = true.obs; 
+  RxBool obscureRegisterConfirmPassword = true.obs; 
+  RxBool agreeToTerms = false.obs; 
 
   AuthService authService = AuthService();
 
@@ -34,120 +39,114 @@ class AuthController extends GetxController {
     }
   }
 
+
   Future<void> register(
-    Function(String) onSuccess,
-    Function(String) onError,
-    String firstname,
-    String lastname,
-    String? email,
+    String firstName,
+    String lastName,
+    String email,
     String password,
-    String? phone,
-  ) async {
-    try {
-      isloading.value = true;
-      await authService.register(firstname, lastname, email, password, phone);
-      onSuccess('Registration successful');
-      Get.toNamed(AppRouter.otp, arguments: {'email': email});
-      isloading.value = false;
-    } on DioException catch (e) {
-      onError(e.message.toString());
-    } finally {
-      isloading.value = false;
-    }
-  }
- Future<void>verify(
     Function(String) onSuccess,
     Function(String) onError,
-    String phone,
-    String otp,
   ) async {
     try {
       isloading.value = true;
-      await authService.verifyCode(phone, otp);
-      onSuccess('OTP verification successful');
-      Get.offAllNamed(AppRouter.main);
-      isloading.value = false;
-    } on DioException catch (e) {
-      onError(e.message.toString());
+      await authService.register(firstName, lastName, email, password);
+      onSuccess('Registration successful. Please verify your email.');
+      Get.toNamed(AppRouter.otp, arguments: {'email': email, 'isRegister': true});
+    } catch (e) {
+      onError(e.toString());
     } finally {
       isloading.value = false;
     }
   }
 
+  
 
+ 
   Future<void> forgetPassword(
     String email,
     Function(String) onSuccess,
     Function(String) onError,
-) async {
-  try {
-    isloading.value = true;
-
-    await authService.forgetPass(email);
-
-    onSuccess('Code sent to your email');
-  } catch (e) {
-    onError(e.toString());
-  } finally {
-    isloading.value = false;
+  ) async {
+    try {
+      isloading.value = true;
+      await authService.forgetPass(email);
+      onSuccess('Code sent to your email');
+    } catch (e) {
+      onError(e.toString());
+    } finally {
+      isloading.value = false;
+    }
   }
-}
 
-
-Future<void> verifyCode(
+  Future<void> verifyEmail(
     String email,
     String code,
     Function(String) onSuccess,
     Function(String) onError,
-) async {
-  try {
-    isloading.value = true;
-
-    await authService.verifyCode(email, code);
-
-    onSuccess('Code verified');
-  } catch (e) {
-    onError(e.toString());
-  } finally {
-    isloading.value = false;
+  ) async {
+    try {
+      isloading.value = true;
+      await authService.verifyEmail(email, code);
+      onSuccess('Email verified successfully.');
+      Get.offAllNamed(AppRouter.login); // Go to login after successful email verification
+    } catch (e) {
+      onError(e.toString());
+    } finally {
+      isloading.value = false;
+    }
   }
-}
 
 
-Future<void> resetPassword(
+
+  Future<void> verifyCode(
+    String email,
+    String code,
+    Function(String) onSuccess,
+    Function(String) onError,
+  ) async {
+    try {
+      isloading.value = true;
+      await authService.verifyCode(email, code);
+      onSuccess('Code verified');
+  
+    } catch (e) {
+      onError(e.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
+
+  Future<void> resetPassword(
     String email,
     String code,
     String password,
     Function(String) onSuccess,
     Function(String) onError,
-) async {
-  try {
-    isloading.value = true;
-
-    await authService.resetPass(email, code, password);
-
-    onSuccess('Password reset successful');
-  } catch (e) {
-    onError(e.toString());
-  } finally {
-    isloading.value = false;
-  }
-}
-
-
-  Future<void> logout(Function(String) onSuccess,Function(String) onError,) async {
+  ) async {
     try {
       isloading.value = true;
-     await authService.logout();
-      onSuccess('Logged out successfully.');
-      Get.offAllNamed(AppRouter.login);
-     isloading.value = false;
-    }on DioException catch (e) {
-      onError(e.message.toString());
-    }
-    finally {
+      await authService.resetPass(email, code, password);
+      onSuccess('Password reset successful');
+      Get.offAllNamed(AppRouter.login); // Navigate to login after successful reset
+    } catch (e) {
+      onError(e.toString());
+    } finally {
       isloading.value = false;
     }
   }
 
+  Future<void> logout(Function(String) onSuccess, Function(String) onError,) async {
+    try {
+      isloading.value = true;
+      await authService.logout();
+      onSuccess('Logged out successfully.');
+      Get.offAllNamed(AppRouter.login);
+      isloading.value = false;
+    } on DioException catch (e) {
+      onError(e.message.toString());
+    } finally {
+      isloading.value = false;
+    }
+  }
 }

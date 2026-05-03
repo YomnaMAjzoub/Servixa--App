@@ -34,7 +34,11 @@
     "login":"Login",
     "ques-login":"Don’t have an account ? ",
     "register":"Register",
-
+    "reset_password_title":"Reset Your Password",
+    "reset_password_subtitle":"Enter your new password",
+    "new_password":"New Password",
+    "confirm_password":"Confirm New Password",
+    "reset_password_button":"Reset Password",
 
     "title1":"Create Your ",
     "reg-subtitle":"Fill your information to get started",

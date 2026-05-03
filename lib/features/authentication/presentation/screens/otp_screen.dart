@@ -1,7 +1,9 @@
+// lib/features/authentication/ui/screens/otp_screen.dart
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/common/widgets/elevated_button.dart';
 import 'package:final_servixa/common/widgets/gradient.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
+import 'package:final_servixa/core/routing/app_router.dart'; // Import AppRouter
 import 'package:final_servixa/features/authentication/business-logic/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
@@ -9,13 +11,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerificationScreen extends StatelessWidget {
-   VerificationScreen({super.key,required this.email});
+  VerificationScreen({
+    super.key,
+    required this.email,
+    required this.isRegister,
+  });
 
-   AuthController authController = Get.find<AuthController>();
-   TextEditingController otpController = TextEditingController();
-   String email;
- String code = '';
-
+  AuthController authController = Get.find<AuthController>();
+  TextEditingController otpController = TextEditingController();
+  String email;
+  String code = '';
+  final bool isRegister;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +40,6 @@ class VerificationScreen extends StatelessWidget {
                   },
                 ),
               ),
-
               const SizedBox(height: 30),
               Container(
                 width: 80,
@@ -49,11 +54,9 @@ class VerificationScreen extends StatelessWidget {
                   color: AppColors.main500,
                 ),
               ),
-
               const SizedBox(height: 20),
-
               Text(
-                "otp_title".tr(),
+                isRegister ? "verify_email_title".tr() : "otp_title".tr(), // Different titles for clarity
                 style: GoogleFonts.roboto(
                   fontSize: 22,
                   color: AppColors.black,
@@ -62,13 +65,12 @@ class VerificationScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                "otp_subtitle $email".tr(),
+               "${isRegister ? "verify_email_subtitle".tr() : "otp_subtitle".tr()} $email",
                 textAlign: TextAlign.center,
+                maxLines: 2,
                 style: GoogleFonts.roboto(color: AppColors.grey200),
               ),
-
               const SizedBox(height: 40),
-
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 40),
                 padding: const EdgeInsets.symmetric(
@@ -90,12 +92,10 @@ class VerificationScreen extends StatelessWidget {
                       enableActiveFill: true,
                       cursorColor: AppColors.main500,
                       showCursor: false,
-
                       textStyle: GoogleFonts.roboto(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
-
                       pinTheme: PinTheme(
                         shape: PinCodeFieldShape.box,
                         borderRadius: BorderRadius.circular(12),
@@ -103,56 +103,75 @@ class VerificationScreen extends StatelessWidget {
                         fieldWidth: 45,
                         inactiveColor: AppColors.grey200,
                         inactiveFillColor: AppColors.grey50,
-
                         selectedColor: AppColors.main500,
                         selectedFillColor: AppColors.white,
-
                         activeColor: AppColors.main500,
                         activeFillColor: AppColors.white,
                       ),
-
                       onChanged: (value) {
                         code = value;
                       },
                     ),
-
                     const SizedBox(height: 20),
-
-                   // Text(
-                    //  "Resend code in 00:51",
-                     // style: GoogleFonts.roboto(color: AppColors.grey200),
-                  //  ),
+                    // Text(
+                    //   "Resend code in 00:51",
+                    //   style: GoogleFonts.roboto(color: AppColors.grey200),
+                    // ),
                   ],
                 ),
               ),
-              const Spacer(),
-              CustomElevated(
-                   onPressed: () {
-                  if (code.length != 6) {
-                     Get.snackbar('Error', 'Enter full code');
-                        return;
-    }
-
-              
-                authController.verifyCode(
-                  email,
-                   code,
-                        (msg) {
-                          
-        // روح على reset password screen أو location 
-           Get.snackbar('Success', msg);},
-      (err) {
-        Get.snackbar('Error', err);
-      },
-    );
-  },
-   text: "Verify".tr(),
-   background: AppColors.main500,
-   height: 48,
-   width: double.infinity,
-   textColor: AppColors.yellow,
-   color: AppColors.main500,
-),
+              SizedBox(height: 100),
+              Obx(
+                () => authController.isloading.value
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.main500,
+                        ),
+                      )
+                    : CustomElevated(
+                        onPressed: () {
+                          if (code.length != 6) {
+                            Get.snackbar('Error', 'Enter full code');
+                            return;
+                          }
+                          if (isRegister) {
+                          authController.verifyEmail(
+                           email,
+                              code,
+                              (msg) {
+                                Get.snackbar('Success', msg);
+                                // After successful email verification, navigate to login
+                                Get.offAllNamed(AppRouter.login);
+                              },
+                              (err) {
+                                Get.snackbar('Error', err);
+                              },
+                            );
+                          } else {
+                            // 🔥 forgot password
+                            authController.verifyCode(
+                              email,
+                              code,
+                              (msg) {
+                                Get.snackbar('Success', msg);
+                                // Navigate to reset password screen after successful verification
+                                Get.toNamed(AppRouter.resetPassword,
+                                    arguments: {'email': email, 'code': code});
+                              },
+                              (err) {
+                                Get.snackbar('Error', err);
+                              },
+                            );
+                          }
+                        },
+                        text: "Verify".tr(),
+                        background: AppColors.main500,
+                        height: 48,
+                        width: MediaQuery.of(context).size.width * 0.50,
+                        textColor: AppColors.yellow,
+                        color: AppColors.main500,
+                      ),
+              ),
             ],
           ),
         ),
@@ -160,3 +179,4 @@ class VerificationScreen extends StatelessWidget {
     );
   }
 }
+
