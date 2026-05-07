@@ -5,7 +5,7 @@ class StepIndicator extends StatelessWidget {
   const StepIndicator({
     super.key,
     required this.currentStep,
-     this.totalSteps = 4,
+    this.totalSteps = 4,
   });
 
   final int currentStep;
@@ -14,23 +14,21 @@ class StepIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(totalSteps, (index){
-        bool isActive = index-1 < currentStep;
+      children: List.generate(totalSteps, (index) {
+        bool isActive = index - 1 < currentStep;
 
         return Expanded(
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            margin:  EdgeInsets.symmetric(horizontal: 8),
+            margin: EdgeInsets.symmetric(horizontal: 8),
             height: 8.5,
             decoration: BoxDecoration(
-              color: isActive
-                  ? AppColors.main500
-                  : AppColors.grey100,
+              color: isActive ? AppColors.main500 : AppColors.grey100,
               borderRadius: BorderRadius.circular(7),
             ),
           ),
         );
-      })
+      }),
     );
   }
 }

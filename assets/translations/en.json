@@ -92,6 +92,13 @@
     "business_title3":"Enter Contact Information",
     "city":"City",
     "address_detail":"Address Detail",
-    "location":"View Location"
+    "location":"View Location",
+
+
+    "business_title4":"Upload Supporting Document",
+    "support":"Supporting Documents",
+    "upload_doc":"Upload Doc",
+    "upload_imag":"Upload Image",
+    "view":"View"
     
 }

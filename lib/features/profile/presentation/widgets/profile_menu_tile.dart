@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class ProfileMenuTile extends StatelessWidget {
   final String title;
   final String icon;
@@ -23,27 +22,23 @@ class ProfileMenuTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding:  EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 10,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: const BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: AppColors.divider,
-            ),
-          ),
+          border: Border(bottom: BorderSide(color: AppColors.divider)),
         ),
         child: Row(
           children: [
-            SvgPicture.asset(
-              icon,
-              width:24,
-              height: 24,
-              fit: BoxFit.none,
+            Align(
+              alignment: AlignmentGeometry.directional(0, -2.2),
+              child: SvgPicture.asset(
+                icon,
+                width: 24,
+                height: 24,
+                fit: BoxFit.none,
+              ),
             ),
 
-            const SizedBox(width:12),
+            const SizedBox(width: 12),
 
             Expanded(
               child: Text(
@@ -56,10 +51,7 @@ class ProfileMenuTile extends StatelessWidget {
               ),
             ),
 
-            const Icon(
-              Icons.chevron_right,
-              color: AppColors.main500,
-            ),
+            const Icon(Icons.chevron_right, color: AppColors.main500),
           ],
         ),
       ),
