@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
+import 'package:final_servixa/core/routing/app_router.dart';
 import 'package:final_servixa/features/home/presentation/screens/home_screen.dart';
 import 'package:final_servixa/features/home/presentation/widgets/nav_bar_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:get/get.dart' hide Trans;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,7 +18,6 @@ class _MainScreenState extends State<MainScreen> {
   double getSelectorPosition(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    
     double itemWidth = width / 5;
 
     num positionIndex = selectedIndex < 2 ? selectedIndex : selectedIndex + 1;
@@ -69,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:AppColors.mainScreen,
+      backgroundColor: AppColors.mainScreen,
       extendBody: true,
       body: pages[selectedIndex],
 
@@ -77,27 +77,32 @@ class _MainScreenState extends State<MainScreen> {
 
       floatingActionButton: Transform.translate(
         offset: Offset(0, -10),
-        child: Container(
-          height: 64.09,
-          width: 62.01,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: AppColors.main500,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.black.withValues(alpha: .25),
-                blurRadius: 7,
-                spreadRadius: 0,
-                offset: const Offset(0, -1),
+        child: InkWell(
+          onTap: () {
+            Get.toNamed(AppRouter.addService);
+          },
+          child: Container(
+            height: 64.09,
+            width: 62.01,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.main500,
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.black.withValues(alpha: .25),
+                  blurRadius: 7,
+                  spreadRadius: 0,
+                  offset: const Offset(0, -1),
+                ),
+              ],
+            ),
+            child: Center(
+              child: SvgPicture.asset(
+                "assets/icons/add.svg",
+                width: 16.63,
+                height: 16.63,
+                fit: BoxFit.none,
               ),
-            ],
-          ),
-          child: Center(
-            child: SvgPicture.asset(
-              "assets/icons/add.svg",
-              width: 16.63,
-              height: 16.63,
-              fit: BoxFit.none,
             ),
           ),
         ),
@@ -106,7 +111,7 @@ class _MainScreenState extends State<MainScreen> {
         height: 69.22,
         child: Stack(
           children: [
-            /// background shape
+            
             CustomPaint(
               size: const Size(double.infinity, 69.22),
               painter: NavBarPainter(fabRadius: 37.78),
@@ -130,7 +135,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
 
-            /// items
+           
             Row(
               children: [
                 navItem(

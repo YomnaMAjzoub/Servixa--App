@@ -14,4 +14,6 @@ class AppRouter {
   static const mainProfile = '/main-profile';
   static const updateProfile = '/update-profile';
   static const resetPassword = '/reset-password'; 
+  static const addService = '/add-service';
+  static const businessProfile = '/business-profile';
 }

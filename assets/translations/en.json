@@ -6,6 +6,7 @@
     "previous":"Previous",
     "next":"Next",
     "finish":"Finish",
+    "submit":"Submit",
 
 
     "home":"Home",
@@ -72,5 +73,25 @@
 
     "services":"Top Construction Services",
     
-    "items":"Top Items"
+    "items":"Top Items",
+
+
+    "business_title1":"Select a Business Profile Type",
+
+    "business_title2":"Enter The Business Details",
+    "business_label1":"License number",
+    "business_hint1":"License number..",
+    "business_label2":"Business name (Arabic)",
+    "business_hint2":"name..",
+    "business_label3":"Business name (English)",
+    "business_label4":"Activities",
+    "business_hint4":"Description..",
+    "business_label5":"Details",
+
+
+    "business_title3":"Enter Contact Information",
+    "city":"City",
+    "address_detail":"Address Detail",
+    "location":"View Location"
+    
 }

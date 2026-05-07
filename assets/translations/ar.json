@@ -6,6 +6,7 @@
     "previous":"الرجوع",
     "next":"التالي",
     "finish":"تم",
+    "submit":"تخطّي",
     
 
     
@@ -68,5 +69,28 @@
 
     "services":"أفضل خدمات البناء",
     
-    "items":"أفضل العناصر"
+    "items":"أفضل العناصر",
+
+
+
+    "business_title1":"اختر نوع ملفك التجاري",
+    "business_title2":"أدخل تفاصيل العمل",
+    "business_label1":"رقم الرخصة",
+    "business_hint1":"رقم الرخصة..",
+    "business_label2":"اسم العمل (العربية)",
+    "business_hint2":"الاسم..",
+    "business_label3":"اسم العمل (الإنجليزية)",
+    "business_label4":"الأنشطة",
+    "business_hint4":"الوصف..",
+    "business_label5":"التفاصيل",
+
+
+    "business_title3":"أدخل معلومات الاتصال",
+    "city":"المدينة",
+    "address_detail":"تفاصيل العنوان",
+    "location":"عرض الموقع"
+    
+
+
+
 }

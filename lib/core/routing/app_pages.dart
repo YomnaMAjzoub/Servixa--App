@@ -3,6 +3,7 @@ import 'package:final_servixa/features/authentication/presentation/screens/login
 import 'package:final_servixa/features/authentication/presentation/screens/otp_screen.dart';
 import 'package:final_servixa/features/authentication/presentation/screens/register_screen.dart';
 import 'package:final_servixa/features/authentication/presentation/screens/reset_password_screen.dart';
+import 'package:final_servixa/features/business-account/presentation/screens/create_business_profile_screen.dart';
 import 'package:final_servixa/features/categories/presentation/screens/categories_screen.dart';
 import 'package:final_servixa/features/categories/presentation/screens/subcategories_screen.dart';
 import 'package:final_servixa/features/home/presentation/screens/home_screen.dart';
@@ -47,6 +48,7 @@ class AppPages {
     GetPage(name: AppRouter.main, page: () => MainScreen()),
 
     GetPage(name: AppRouter.home, page: () => Home()),
+  //  GetPage(name: AppRouter.addService, page: () => AddServiceScreen()),
 
     GetPage(name: AppRouter.product, page: () => DetailsScreen()),
 
@@ -58,6 +60,7 @@ class AppPages {
     GetPage(name: AppRouter.search, page: () => SearchScreen()),
     GetPage(name: AppRouter.mainProfile, page: () => ProfileScreen()),
     GetPage(name: AppRouter.updateProfile, page:()=>UpdateProfileScreen()),
+    GetPage(name: AppRouter.businessProfile, page:()=>BusinessProfileScreen()),
   ];
 }
  

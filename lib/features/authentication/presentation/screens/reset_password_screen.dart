@@ -105,7 +105,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 Center(
                   child: Text(
-                    "reset_password_title".tr(), // "Reset Password"
+                    "reset_password_title".tr(), 
                     style: GoogleFonts.roboto(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -116,7 +116,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 SizedBox(height: 20),
                 Center(
                   child: Text(
-                    "reset_password_subtitle".tr(), // "Enter your new password"
+                    "reset_password_subtitle".tr(), 
                     textAlign: TextAlign.center,
                     style: GoogleFonts.roboto(
                       fontSize: 16,
@@ -219,7 +219,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           ),
                         )
                       : CustomElevated(
-                          text: "reset_password_button".tr(), // "Reset Password"
+                          text: "reset_password_button".tr(), 
                           height: 48,
                           width: MediaQuery.of(context).size.width * 0.93,
                           onPressed: handleResetPassword,

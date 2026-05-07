@@ -52,8 +52,7 @@ class CustomFormField extends StatelessWidget {
         keyboardType: keyboard,
         textInputAction: inputAction,
         obscureText: obscuretext,
-
-        // ✅ الحل هون
+       hintLocales: [Locale('en', 'US'), Locale('ar', 'EG')],
         maxLines: obscuretext ? 1 : (maxLines ?? 1),
 
         decoration: InputDecoration(

@@ -56,7 +56,7 @@ class VerificationScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text(
-                isRegister ? "verify_email_title".tr() : "otp_title".tr(), // Different titles for clarity
+                isRegister ? "verify_email_title".tr() : "otp_title".tr(), 
                 style: GoogleFonts.roboto(
                   fontSize: 22,
                   color: AppColors.black,
@@ -113,10 +113,7 @@ class VerificationScreen extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 20),
-                    // Text(
-                    //   "Resend code in 00:51",
-                    //   style: GoogleFonts.roboto(color: AppColors.grey200),
-                    // ),
+                   
                   ],
                 ),
               ),
@@ -140,7 +137,7 @@ class VerificationScreen extends StatelessWidget {
                               code,
                               (msg) {
                                 Get.snackbar('Success', msg);
-                                // After successful email verification, navigate to login
+                               
                                 Get.offAllNamed(AppRouter.login);
                               },
                               (err) {
@@ -148,13 +145,13 @@ class VerificationScreen extends StatelessWidget {
                               },
                             );
                           } else {
-                            // 🔥 forgot password
+                            
                             authController.verifyCode(
                               email,
                               code,
                               (msg) {
                                 Get.snackbar('Success', msg);
-                                // Navigate to reset password screen after successful verification
+                               
                                 Get.toNamed(AppRouter.resetPassword,
                                     arguments: {'email': email, 'code': code});
                               },

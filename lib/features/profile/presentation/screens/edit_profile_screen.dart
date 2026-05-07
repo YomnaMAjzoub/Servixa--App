@@ -1,7 +1,6 @@
 import 'package:final_servixa/common/widgets/gradient.dart';
 import 'package:final_servixa/common/widgets/text_field.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
-import 'package:final_servixa/core/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -36,7 +35,7 @@ class UpdateProfileScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Get.offNamed(AppRouter.mainProfile);
+                      Get.back();
                     },
                     icon: const Icon(
                       Icons.arrow_back,

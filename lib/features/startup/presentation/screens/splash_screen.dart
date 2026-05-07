@@ -3,6 +3,7 @@ import 'package:final_servixa/core/constants/app_colors.dart';
 import 'package:final_servixa/core/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   double _opacity = 0.0;
   double _scale = 0.8;
 
- // final GetStorage storage = GetStorage();
+ final GetStorage storage = GetStorage();
 
   @override
   void initState() {
@@ -29,9 +30,14 @@ class _SplashScreenState extends State<SplashScreen> {
     });
 
     Timer(const Duration(seconds: 3), () {
-   //   storage.read('token') != null
-         // ? Get.offNamed(AppRouter.main)
-           Get.offNamed(AppRouter.onboarding);
+      final token = storage.read('token'); 
+      if (token != null && token.isNotEmpty) {
+        
+        Get.offNamed(AppRouter.main); 
+      } else {
+        
+        Get.offNamed(AppRouter.onboarding);
+      }
     });
   }
 

@@ -1,3 +1,4 @@
+import 'package:final_servixa/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -30,7 +31,7 @@ class CustomElevated extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: background,
           shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1),
+            side: BorderSide(width: 1,color: AppColors.main500),
             borderRadius: BorderRadius.circular(16),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:final_servixa/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -30,8 +31,8 @@ class CustomCategories extends StatelessWidget {
             SvgPicture.asset(image, width: 34, height: 34, fit: BoxFit.none),
             Text(
               name,
-              style: TextStyle(
-                overflow:TextOverflow.ellipsis,
+              style: GoogleFonts.poppins(
+               textStyle: TextStyle(overflow: TextOverflow.ellipsis),
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: AppColors.grey600,

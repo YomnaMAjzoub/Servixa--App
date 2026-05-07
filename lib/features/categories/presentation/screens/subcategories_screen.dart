@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/common/widgets/gradient.dart';
 import 'package:final_servixa/common/widgets/search_field.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
-import 'package:final_servixa/core/routing/app_router.dart';
 import 'package:final_servixa/features/categories/presentation/widgets/categories_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,7 +37,7 @@ class SubCategoryScreen extends StatelessWidget {
                     alignment: AlignmentGeometry.topLeft,
                     child: IconButton(
                       onPressed: () {
-                        Get.offNamed(AppRouter.categor);
+                        Get.back();
                       },
                       icon: const Icon(
                         Icons.arrow_back,

@@ -1,6 +1,5 @@
 import 'package:final_servixa/common/widgets/gradient.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
-import 'package:final_servixa/core/routing/app_router.dart';
 import 'package:final_servixa/features/profile/data/models/profile_menu_model.dart';
 import 'package:final_servixa/features/profile/presentation/widgets/profile_header_card.dart';
 import 'package:final_servixa/features/profile/presentation/widgets/profile_menu_tile.dart';
@@ -87,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    Get.offNamed(AppRouter.home);
+                    Get.back();
                   },
                   icon: const Icon(Icons.arrow_back, color: AppColors.grey700),
                 ),
