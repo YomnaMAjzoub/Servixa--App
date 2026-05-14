@@ -4,24 +4,32 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/common/widgets/elevated_button.dart';
 import 'package:final_servixa/common/widgets/text_field.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
+import 'package:final_servixa/core/routing/app_router.dart';
+import 'package:final_servixa/features/business-account/business-logic/controller/business_acc_controller.dart';
 import 'package:final_servixa/features/business-account/business-logic/controller/cities_controller.dart';
 import 'package:final_servixa/features/business-account/data/models/cities_model.dart';
+import 'package:final_servixa/features/map/business-logic/controller/map_controller.dart';
+import 'package:final_servixa/features/map/data/models/location_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ContactInfoScreen extends StatelessWidget {
   ContactInfoScreen({super.key});
 
+  final businessController = Get.find<BusinessAccountController>();
   final CitiesController citiesController = Get.put(CitiesController());
+  final mapController = Get.find<MapController>();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.symmetric(horizontal: 16),
       child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+      
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -69,7 +77,7 @@ class ContactInfoScreen extends StatelessWidget {
                 return Center(
                   child: CircularProgressIndicator(
                     color: AppColors.main500,
-                    strokeWidth:5,
+                    strokeWidth: 5,
                   ),
                 );
               }
@@ -132,17 +140,18 @@ class ContactInfoScreen extends StatelessWidget {
                       child: Text(
                         city.cityName,
                         style: GoogleFonts.roboto(
-                       fontSize: 14,
-                       fontWeight: FontWeight.w400,
-                        color: AppColors.grey800,
-            ),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.grey800,
                         ),
+                      ),
                     );
                   }).toList(),
 
                   onChanged: (value) {
                     log(value!.cityName + value.id.toString());
-                 citiesController.selectedCity.value = value;
+                    citiesController.selectedCity.value = value;
+                    businessController.selectedCityId.value =value.id;
                   },
                 ),
               );
@@ -162,6 +171,7 @@ class ContactInfoScreen extends StatelessWidget {
             SizedBox(height: 12),
 
             CustomFormField(
+              controller: businessController.businessAddressController,
               width: MediaQuery.of(context).size.width * 0.91,
               height: MediaQuery.of(context).size.height * 0.12,
               hint: 'address_detail'.tr(),
@@ -240,18 +250,36 @@ class ContactInfoScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(18),
                           topLeft: Radius.circular(18),
                         ),
-                        child: Image.asset(
-                          'assets/images/map.png',
-                          fit: BoxFit.cover,
-                          filterQuality: FilterQuality.high,
+                        child: GetBuilder<MapController>(
+                          builder: (controller) {
+                            if (controller.isLoading.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+
+                            return GoogleMap(
+                              initialCameraPosition:
+                                  MapController.initialCameraPosition,
+
+                              markers: controller.markers,
+
+                              myLocationEnabled: true,
+
+                              onMapCreated: (map) {
+                                controller.mapController.value = map;
+                              },
+
+                              onTap: controller.selectLocation,
+                            );
+                          },
                         ),
                       ),
                     ),
-
                     SizedBox(height: 12),
 
                     Center(
@@ -259,7 +287,26 @@ class ContactInfoScreen extends StatelessWidget {
                         text: 'location'.tr(),
                         height: 48,
                         width: MediaQuery.of(context).size.width * 0.84,
-                        onPressed: () {},
+                        onPressed: () async {
+                          final result =
+      await Get.toNamed(
+    AppRouter.mapLocation,
+  );
+
+  if (result != null) {
+
+    final location =
+        result as LocationModel;
+
+    mapController.selectedLocation.value =
+        location;
+
+    businessController
+            .businessAddressController
+            .text =
+        location.address ?? '';
+  }
+  },
                         background: AppColors.white,
                         textColor: AppColors.main500,
                       ),

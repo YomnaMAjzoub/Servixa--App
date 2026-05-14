@@ -94,7 +94,16 @@
     "support":"المستندات الداعمة",
     "upload_doc":"تحميل المستند",
     "upload_imag":"تحميل الصور",
-    "view":"عرض"
+    "view":"عرض",
+
+
+
+    "service_title_step1":"اختر الفئة الرئيسية",
+    "service_title_step2":"اختر الفئة الفرعية",
+    "service_title_step3":"اكتب تفاصيل إعلانك",
+
+
+    "rate_section_title":"تقييم الإعلان"
     
 
 

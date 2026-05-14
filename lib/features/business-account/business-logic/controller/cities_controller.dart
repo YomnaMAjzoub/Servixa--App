@@ -38,7 +38,6 @@ class CitiesController extends GetxController {
       );
 
     } finally {
-
       isLoading.value = false;
     }
   }

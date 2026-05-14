@@ -5,9 +5,9 @@ class UserModel {
   final String? phoneNumber;
   final String? email;
   final String? image;
-  final bool? isActive;
-  final String? city;
-  final String? addressDetail;
+  final String? name;
+ 
+ 
 
   UserModel({
     required this.id,
@@ -16,9 +16,7 @@ class UserModel {
     this.phoneNumber,
     this.email,
     this.image,
-    this.isActive,
-    this.city,
-    this.addressDetail,
+    this.name
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -29,9 +27,7 @@ class UserModel {
       phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
       image: json['image'] as String?,
-      isActive: json['is_active'] as bool?,
-      city: json['city'] as String?,
-      addressDetail: json['address_detail'] as String?,
+      name: json['name']as String?
     );
   }
 
@@ -42,10 +38,8 @@ class UserModel {
       'last_name': lastName,
       'phone_number': phoneNumber,
       'email': email,
-      'image': image, 
-      'is_active': isActive,
-      'city': city,
-      'address_detail': addressDetail,
+      'image': image,
+      'name':name
     };
   }
 
@@ -56,9 +50,7 @@ class UserModel {
     String? phoneNumber,
     String? email,
     String? image,
-    bool? isActive,
-    String? city,
-    String? addressDetail,
+    String?name
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -67,10 +59,7 @@ class UserModel {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       email: email ?? this.email,
       image: image ?? this.image,
-      isActive: isActive ?? this.isActive,
-      city: city ?? this.city,
-      addressDetail: addressDetail ?? this.addressDetail,
+      name:name ?? this.name
     );
   }
 }
-

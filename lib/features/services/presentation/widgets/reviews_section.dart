@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
-import 'package:final_servixa/features/services/presentation/widgets/rating_bottom_sheet.dart';
+import 'package:final_servixa/features/reviews/presentation/screens/rating_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart'hide Trans;
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -41,7 +42,7 @@ class ReviewsSection extends StatelessWidget {
                 fit: BoxFit.none,
               ),
               Text(
-                'Rate this Ad',
+                'rate_section_title'.tr(),
                 style: GoogleFonts.roboto(
                   fontSize: 22,
                   fontWeight: FontWeight.w500,

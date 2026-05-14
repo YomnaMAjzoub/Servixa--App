@@ -1,19 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/common/widgets/text_field.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
+import 'package:final_servixa/features/business-account/business-logic/controller/business_acc_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart'hide Trans;
 import 'package:google_fonts/google_fonts.dart';
 
 class BusinessDetailsScreen extends StatelessWidget {
-  const BusinessDetailsScreen({super.key});
+  BusinessDetailsScreen({super.key});
+  final businessController =Get.find<BusinessAccountController>();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
     padding:EdgeInsetsDirectional.symmetric(horizontal: 16),
      child: SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+     
       child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -55,7 +58,9 @@ class BusinessDetailsScreen extends StatelessWidget {
 
               SizedBox(height:12),
 
-            CustomFormField(width: MediaQuery.of(context).size.width*0.91,
+            CustomFormField(
+              controller: businessController.licenseNumberController,
+            width: MediaQuery.of(context).size.width*0.91,
              height:48,
               hint: 'business_hint1'.tr(),
               prefix: SvgPicture.asset('assets/icons/license-icon.svg',width:10.8,height: 14.4,fit: BoxFit.none),
@@ -82,7 +87,9 @@ class BusinessDetailsScreen extends StatelessWidget {
               ),
               ),
               SizedBox(height:12),
-            CustomFormField(width: MediaQuery.of(context).size.width*0.91,
+            CustomFormField(
+            controller: businessController.businessNameArController,
+            width: MediaQuery.of(context).size.width*0.91,
              height:48,
               hint: 'business_hint2'.tr(),
               prefix: SvgPicture.asset('assets/icons/name-icon.svg',width:10.8,height: 14.4,fit: BoxFit.none),
@@ -110,7 +117,9 @@ class BusinessDetailsScreen extends StatelessWidget {
               ),
               ),
               SizedBox(height:12),
-            CustomFormField(width: MediaQuery.of(context).size.width*0.91,
+            CustomFormField(
+              controller: businessController.businessNameEnController,
+            width: MediaQuery.of(context).size.width*0.91,
              height:48,
               hint: 'business_hint2'.tr(),
               prefix: SvgPicture.asset('assets/icons/name-icon.svg',width:10.8,height: 14.4,fit: BoxFit.none),
@@ -138,7 +147,9 @@ class BusinessDetailsScreen extends StatelessWidget {
               ),
               ),
               SizedBox(height:12),
-            CustomFormField(width: MediaQuery.of(context).size.width*0.91,
+            CustomFormField(
+              controller: businessController.activitiesController,
+              width: MediaQuery.of(context).size.width*0.91,
              height:48,
               hint: 'business_hint4'.tr(),
               prefix: SvgPicture.asset('assets/icons/activity-icon.svg',width:10.8,height: 14.4,fit: BoxFit.none),
@@ -166,6 +177,7 @@ class BusinessDetailsScreen extends StatelessWidget {
               ),
               SizedBox(height:12),
             CustomFormField(
+              controller: businessController.detailsController,
               width: MediaQuery.of(context).size.width*0.91,
               height:MediaQuery.of(context).size.height*0.12,
               prefixConstraints: BoxConstraints(minWidth: 40, minHeight: 40,maxHeight:40,maxWidth:40),

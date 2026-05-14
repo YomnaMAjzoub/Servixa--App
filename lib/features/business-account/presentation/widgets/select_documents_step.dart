@@ -11,9 +11,7 @@ import 'package:open_filex/open_filex.dart';
 class SelectDocumentsScreen extends StatelessWidget {
   SelectDocumentsScreen({super.key});
 
-  final BusinessAccountController controller = Get.put(
-    BusinessAccountController(),
-  );
+  final  controller = Get.find<BusinessAccountController>();
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +65,25 @@ class SelectDocumentsScreen extends StatelessWidget {
                 children: controller.uploadedFiles.map((file) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 12),
-                    child: UploadFileCard(
-                      name: file.name,
-                      size: file.size,
-                      isPdf: file.isPdf,
-                      onView: () {
-                        OpenFilex.open(file.path);
-                      },
-                    ),
+                    child:UploadFileCard(
+
+  name: file.name,
+
+  size: file.size,
+
+  isPdf: file.isPdf,
+
+  onView: () {
+
+    OpenFilex.open(file.path);
+  },
+
+  onDelete: () {
+
+    controller.uploadedFiles
+        .remove(file);
+  },
+),
                   );
                 }).toList(),
               ),

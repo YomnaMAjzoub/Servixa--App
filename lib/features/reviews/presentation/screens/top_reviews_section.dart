@@ -1,6 +1,6 @@
 import 'package:final_servixa/core/constants/app_colors.dart';
-import 'package:final_servixa/features/services/data/models/review_model.dart';
-import 'package:final_servixa/features/services/presentation/widgets/review_card.dart';
+import 'package:final_servixa/features/reviews/data/models/review_model.dart';
+import 'package:final_servixa/features/reviews/presentation/widgets/review_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

@@ -99,6 +99,12 @@
     "support":"Supporting Documents",
     "upload_doc":"Upload Doc",
     "upload_imag":"Upload Image",
-    "view":"View"
+    "view":"View",
+
+    "service_title_step1":"Select the Main Category",
+    "service_title_step2":"Select the Sub Category",
+    "service_title_step3":"Write Your Ad Details",
+
+    "rate_section_title":"Rate this Ad"
     
 }

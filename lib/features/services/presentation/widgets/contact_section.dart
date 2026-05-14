@@ -1,4 +1,4 @@
-import 'package:final_servixa/features/services/data/models/rating_model.dart';
+import 'package:final_servixa/features/reviews/data/models/rating_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';

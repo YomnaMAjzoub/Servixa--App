@@ -19,7 +19,7 @@ class CategoryScreen extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return Scaffold(
       body: CustomGradient(
         child: SafeArea(
@@ -30,7 +30,6 @@ class CategoryScreen extends StatelessWidget {
             ),
             child: CustomScrollView(
               slivers: [
-                
                 SliverToBoxAdapter(
                   child: Align(
                     alignment: AlignmentGeometry.topLeft,

@@ -1,5 +1,5 @@
 import 'package:final_servixa/core/constants/app_colors.dart';
-import 'package:final_servixa/features/services/presentation/widgets/offer_bottom_sheet.dart';
+import 'package:final_servixa/features/orders/presentation/screens/offer_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

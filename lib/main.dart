@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/core/routing/app_pages.dart';
 import 'package:final_servixa/core/routing/app_router.dart';
+import 'package:final_servixa/features/map/business-logic/controller/map_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -11,6 +12,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await GetStorage.init();
+
+  Get.put(MapController(), permanent: true);
 
   runApp(
    EasyLocalization(

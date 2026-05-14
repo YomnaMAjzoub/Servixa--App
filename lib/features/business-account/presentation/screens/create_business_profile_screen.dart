@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/common/widgets/elevated_button.dart';
 import 'package:final_servixa/common/widgets/gradient.dart';
@@ -7,10 +5,10 @@ import 'package:final_servixa/core/constants/app_colors.dart';
 import 'package:final_servixa/features/business-account/business-logic/controller/business_acc_controller.dart';
 import 'package:final_servixa/features/business-account/business-logic/controller/cities_controller.dart';
 import 'package:final_servixa/features/business-account/presentation/widgets/business_details_step.dart';
-import 'package:final_servixa/features/business-account/presentation/widgets/profile_type_step.dart';
+import 'package:final_servixa/features/business-account/presentation/widgets/user_type_step.dart';
 import 'package:final_servixa/features/business-account/presentation/widgets/select_contactinfo_step.dart';
 import 'package:final_servixa/features/business-account/presentation/widgets/select_documents_step.dart';
-import 'package:final_servixa/features/business-account/presentation/widgets/step_indicator.dart';
+import 'package:final_servixa/common/widgets/step_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 
@@ -58,10 +56,10 @@ class BusinessProfileScreen extends StatelessWidget {
               Expanded(
                 child: PageView(
                   controller: controller.pageController,
-                  onPageChanged: controller.jumpToPage,
+                  onPageChanged: controller.onPageChanged,
                   physics: BouncingScrollPhysics(),
                   children: [
-                    SelectProfileTypeScreen(),
+                    SelectUserTypeScreen(),
                     BusinessDetailsScreen(),
                     ContactInfoScreen(),
                     SelectDocumentsScreen(),
@@ -97,6 +95,7 @@ class BusinessProfileScreen extends StatelessWidget {
                           width: double.infinity,
                           onPressed: () {
                             if (isLast) {
+                              controller.submitBusiness();
                             } else {
                               controller.nextPage();
                             }

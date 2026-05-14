@@ -1,7 +1,7 @@
 import 'package:final_servixa/core/constants/app_colors.dart';
 import 'package:final_servixa/features/map/data/models/location_model.dart';
-import 'package:final_servixa/features/services/data/models/rating_model.dart';
-import 'package:final_servixa/features/services/data/models/review_model.dart';
+import 'package:final_servixa/features/reviews/data/models/rating_model.dart';
+import 'package:final_servixa/features/reviews/data/models/review_model.dart';
 import 'package:final_servixa/features/services/presentation/widgets/bottom_bar.dart';
 import 'package:final_servixa/features/services/presentation/widgets/contact_section.dart';
 import 'package:final_servixa/features/services/presentation/widgets/description_section.dart';
@@ -9,7 +9,7 @@ import 'package:final_servixa/features/services/presentation/widgets/features_se
 import 'package:final_servixa/features/services/presentation/widgets/location_section.dart';
 import 'package:final_servixa/features/services/presentation/widgets/price_section.dart';
 import 'package:final_servixa/features/services/presentation/widgets/reviews_section.dart';
-import 'package:final_servixa/features/services/presentation/widgets/top_reviews_section.dart';
+import 'package:final_servixa/features/reviews/presentation/screens/top_reviews_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
