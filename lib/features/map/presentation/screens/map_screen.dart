@@ -40,7 +40,20 @@ class MapScreen extends StatelessWidget {
                     )
                   ),
                   onPressed: () {
-                    Get.back(result: c.selectedLocation.value);
+                    if (c.selectedLocation.value == null) {
+
+                      Get.snackbar(
+                         "Error",
+                        "Please select location",
+                         backgroundColor: AppColors.red,
+                          );
+
+                           return;
+                                 }
+
+                                Get.back(
+                              result: c.selectedLocation.value,
+                                 );
                   },
                   child:  Text(
                     "Confirm",

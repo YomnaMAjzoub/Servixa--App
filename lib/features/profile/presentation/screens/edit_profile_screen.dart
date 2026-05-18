@@ -13,13 +13,13 @@ import 'package:get/get.dart' hide Trans;
 import 'package:google_fonts/google_fonts.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
-  UpdateProfileScreen({super.key});
+   UpdateProfileScreen({super.key});
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final emailController = TextEditingController();
   final locationController = TextEditingController();
 
-  InputBorder border = OutlineInputBorder(
+ final InputBorder border = OutlineInputBorder(
     borderRadius: BorderRadius.circular(16),
     borderSide: const BorderSide(color: AppColors.grey100, width: 1),
   );

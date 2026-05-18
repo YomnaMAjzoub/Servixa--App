@@ -148,10 +148,10 @@ class ContactInfoScreen extends StatelessWidget {
                     );
                   }).toList(),
 
-                  onChanged: (value) {
+                  onChanged: (value) { 
                     log(value!.cityName + value.id.toString());
                     citiesController.selectedCity.value = value;
-                    businessController.selectedCityId.value =value.id;
+                    businessController.selectedCityId.value = value.id;
                   },
                 ),
               );
@@ -222,7 +222,7 @@ class ContactInfoScreen extends StatelessWidget {
                 SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    'location_on_map',
+                 mapController.selectedLocation.value?.address ?? 'select_location'.tr(),
                     style: GoogleFonts.roboto(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -295,17 +295,19 @@ class ContactInfoScreen extends StatelessWidget {
 
   if (result != null) {
 
-    final location =
-        result as LocationModel;
+  final location =
+      result as LocationModel;
 
-    mapController.selectedLocation.value =
-        location;
+  mapController.selectedLocation.value =
+      location;
 
-    businessController
-            .businessAddressController
-            .text =
-        location.address ?? '';
-  }
+  businessController
+      .businessAddressController
+      .text =
+      location.address ?? '';
+
+  businessController.update();
+}
   },
                         background: AppColors.white,
                         textColor: AppColors.main500,

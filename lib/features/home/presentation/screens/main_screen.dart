@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
 import 'package:final_servixa/core/routing/app_router.dart';
+import 'package:final_servixa/features/categories/business-logic/controller/categories_controller.dart';
 import 'package:final_servixa/features/home/presentation/screens/home_screen.dart';
 import 'package:final_servixa/features/home/presentation/widgets/nav_bar_painter.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
 
   int selectedIndex = 0;
 
-  final pages = [const Home(), const Home(), const Home(), const Home()];
+  final pages = [ Home(), Home(),  Home(),  Home()];
 
   void changeTab(int index) {
     setState(() {
@@ -65,6 +66,10 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
+
+ // final CategoriesController categoriesController = Get.put(CategoriesController());
+
+   @override
 
   @override
   Widget build(BuildContext context) {

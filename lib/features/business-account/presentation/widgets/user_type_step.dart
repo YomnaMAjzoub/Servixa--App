@@ -71,8 +71,8 @@ class SelectUserTypeScreen extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                          final item = userTypeController.user[index];
-                         businessController.selectedUserTypeId.value =item.id;
-                                 log(businessController.selectedUserTypeId.value.toString());
+                   businessController.selectedUserTypeId.value = item.id;                            
+                  log(businessController.selectedUserTypeId.value.toString());
                       },
                       child: Container(
                         padding: EdgeInsetsDirectional.all(10),

@@ -13,6 +13,7 @@ import 'package:final_servixa/features/map/presentation/screens/map_screen.dart'
 import 'package:final_servixa/features/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:final_servixa/features/profile/presentation/screens/profile_screen.dart';
 import 'package:final_servixa/features/search-filters/presentation/screens/search_screen.dart';
+import 'package:final_servixa/features/services/presentation/screens/add_service_screen.dart';
 import 'package:final_servixa/features/services/presentation/screens/details_screen.dart';
 import 'package:final_servixa/features/startup/presentation/screens/onboarding_screens.dart';
 import 'package:final_servixa/features/startup/presentation/screens/splash_screen.dart';
@@ -49,7 +50,7 @@ class AppPages {
     GetPage(name: AppRouter.main, page: () => MainScreen()),
 
     GetPage(name: AppRouter.home, page: () => Home()),
-   // GetPage(name: AppRouter.addService, page: () => AddServiceScreen()),
+    GetPage(name: AppRouter.addService, page: () => AddServiceScreen()),
 
     GetPage(name: AppRouter.product, page: () => DetailsScreen()),
 

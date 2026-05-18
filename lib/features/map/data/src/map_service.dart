@@ -17,17 +17,17 @@ class MapService {
 
     if (!serviceEnabled) {
 
-  Get.snackbar(
-    "Location",
-    "Please enable GPS",
-  );
+      Get.snackbar(
+        "Location",
+        "Please enable GPS",
+      );
 
-  await Geolocator.openLocationSettings();
+      await Geolocator.openLocationSettings();
 
-  return Future.error(
-    'Location disabled',
-  );
-}
+      throw Exception(
+        'Location disabled',
+      );
+    }
 
     permission =
         await Geolocator.checkPermission();
@@ -42,18 +42,29 @@ class MapService {
       if (permission ==
           LocationPermission.denied) {
 
-        throw 'Location permission denied';
+        throw Exception(
+          'Location permission denied',
+        );
       }
     }
 
     if (permission ==
         LocationPermission.deniedForever) {
 
-      throw 'Location permission denied forever';
+      await Geolocator
+          .openAppSettings();
+
+      throw Exception(
+        'Location permission denied forever',
+      );
     }
 
     return await Geolocator
-        .getCurrentPosition();
+        .getCurrentPosition(
+          locationSettings: AndroidSettings(
+            accuracy: LocationAccuracy.high,
+          ),
+    );
   }
 
   Future<String>
@@ -62,21 +73,29 @@ class MapService {
     required double lng,
   }) async {
 
-    final placemarks =
-        await placemarkFromCoordinates(
-      lat,
-      lng,
-    );
+    try {
 
-    if (placemarks.isEmpty) {
+      final placemarks =
+          await placemarkFromCoordinates(
+        lat,
+        lng,
+      );
+
+      if (placemarks.isEmpty) {
+        return '';
+      }
+
+      final place =
+          placemarks.first;
+
+      return
+          '${place.country ?? ''}, '
+          '${place.locality ?? ''}, '
+          '${place.street ?? ''}';
+
+    } catch (e) {
+
       return '';
     }
-
-    final place = placemarks.first;
-
-    return
-        '${place.country}, '
-        '${place.locality}, '
-        '${place.street}';
   }
 }

@@ -1,21 +1,17 @@
+import 'dart:developer';
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:final_servixa/features/business-account/data/models/business_acc_model.dart';
 import 'package:get_storage/get_storage.dart';
 
 class BusinessAccService {
-
   final Dio dio = Dio();
+  final storage = GetStorage();
 
-  Future<BusinessAccModel>
-      createBusinessAccount({
-
+  Future<List<BusinessAccModel>> createBusinessAccount({
     required int userTypeId,
 
     required int cityId,
-
-    required int accountType,
 
     required String businessNameAr,
 
@@ -34,105 +30,66 @@ class BusinessAccService {
     required double lng,
 
     required List<File> documents,
-
   }) async {
-
     try {
+      FormData formData = FormData.fromMap({
+        "user_type_id": userTypeId.toString(),
 
-      FormData formData =
-          FormData.fromMap({
+        "city_id": cityId.toString(),
 
-        "user_type_id":
-            userTypeId,
+       "business_name": {
+   "ar": businessNameAr.toString(),
+   "en": businessNameEn.toString(),
+},
+        "license_number": licenseNumber,
 
-        "city_id":
-            cityId,
+        "business_address": businessAddress,
 
-        "account_type":
-            accountType,
+        "activities": activities,
 
-        "business_name[ar]":
-            businessNameAr,
+        "details": details,
 
-        "business_name[en]":
-            businessNameEn,
+        "lat": lat.toString(),
 
-        "license_number":
-            licenseNumber,
+        "lng": lng.toString(),
 
-        "business_address":
-            businessAddress,
-
-        "activities":
-            activities,
-
-        "details":
-            details,
-
-        "lat":
-            lat,
-
-        "lng":
-            lng,
-
-        "documents[]":
-            await Future.wait(
-
+        "documents[]": await Future.wait(
           documents.map(
-
-            (file) async =>
-
-                await MultipartFile
-                    .fromFile(
-
+            (file) async => await MultipartFile.fromFile(
               file.path,
 
-              filename:
-                  file.path
-                      .split('/')
-                      .last,
+              filename: file.path.split('/').last,
             ),
           ),
         ),
       });
 
-      Response response =
-          await dio.post(
-
+      Response response = await dio.post(
         'https://services.tamkeen-dev.com/api/v1/business-accounts',
 
         data: formData,
 
         options: Options(
-
           headers: {
+            "Accept": "application/json",
 
-            "Accept":
-                "application/json",
+            "Authorization": "Bearer ${storage.read('token')??''}",
 
-            "Authorization":
-                "Bearer ${GetStorage().read('token') ?? ''}",
-
-            "Content-Type":
-                "multipart/form-data",
+            "Content-Type": "multipart/form-data",
           },
         ),
       );
 
-      if (response.statusCode == 200 ||
-          response.statusCode == 201) {
-
-        return BusinessAccModel.fromJson(
-          response.data['data'],
-        );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        log(response.data.toString());
+        return [BusinessAccModel.fromJson(response.data['data'])];
       }
 
-      throw "Failed to create business account";
-
+      throw response.data['message'];
+      
     } on DioException catch (e) {
-
-      throw e.response?.data['message']
-          ?? "Server Error";
+      throw e.response?.data['message'] ?? "Server Error";
     }
   }
+  
 }

@@ -1,12 +1,14 @@
-class DocumentsModel {
+class FileModel {
   int id;
   String url;
   String name;
 
-  DocumentsModel({required this.id, required this.url, required this.name});
+  FileModel({required this.id, required this.url, required this.name});
 
-  factory DocumentsModel.fromJson(Map<String, dynamic> json) {
-    return DocumentsModel(id: json['id'], url: json['url'], name: json['name']);
+  factory FileModel.fromJson(Map<String, dynamic> json) {
+    return FileModel(id: json['id'], url: json['url'], name: json['name']);
   }
-  
+  static List<FileModel> fromJsonList(List<dynamic> json) {
+    return json.map((e) => FileModel.fromJson(e)).toList();
+  }
 }

@@ -4,47 +4,40 @@ import 'package:final_servixa/features/business-account/data/models/documents_mo
 import 'package:final_servixa/features/business-account/data/models/user_type_model.dart';
 
 class BusinessAccModel {
+  int id;
 
-  final int id;
+  int userTypeId;
 
-  final int userTypeId;
+  int cityId;
 
-  final int cityId;
+  String businessName;
 
+  String licenseNumber;
 
-  final BusinessNameModel businessName;
+  String businessAddress;
 
-  final String licenseNumber;
+  String activities;
 
-  final String businessAddress;
+  String details;
 
-  final String activities;
+  double lat;
 
-  final String details;
+  double lng;
 
-  final int userId;
+  UserModel user;
 
-  final double lat;
+  UserTypeModel userType;
 
-  final double lng;
+  CityModel city;
 
-  final UserModel user;
-
-  final UserTypeModel userType;
-
-  final CityModel city;
-
-  final List<DocumentsModel> documents;
+  List<FileModel>? documents;
 
   BusinessAccModel({
-
     required this.id,
 
     required this.userTypeId,
 
     required this.cityId,
-
-   
 
     required this.businessName,
 
@@ -56,8 +49,6 @@ class BusinessAccModel {
 
     required this.details,
 
-    required this.userId,
-
     required this.lat,
 
     required this.lng,
@@ -68,106 +59,42 @@ class BusinessAccModel {
 
     required this.city,
 
-    required this.documents,
+    this.documents,
   });
 
-  factory BusinessAccModel.fromJson(
-    Map<String, dynamic> json,
-  ) {
-
+  factory BusinessAccModel.fromJson(Map<String, dynamic> json) {
     return BusinessAccModel(
-
       id: json['id'],
 
-      userTypeId:
-          int.parse(
-        json['user_type_id'].toString(),
-      ),
+      userTypeId: int.parse(json['user_type_id'].toString()),
 
-      cityId:
-          int.parse(
-        json['city_id'].toString(),
-      ),
+      cityId: int.parse(json['city_id'].toString()),
 
+      businessName: json['business_name'] ?? '',
 
-      businessName:
-          BusinessNameModel.fromJson(
-        json['business_name'],
-      ),
+      licenseNumber: json['license_number'] ?? '',
 
-      licenseNumber:
-          json['license_number'],
+      businessAddress: json['business_address'] ?? '',
 
-      businessAddress:
-          json['business_address'],
+      activities: json['activities'] ?? '',
 
-      activities:
-          json['activities'],
+      details: json['details'] ?? '',
 
-      details:
-          json['details'],
+      lat: double.parse(json['lat'].toString()),
 
-      userId:
-          json['user_id'],
+      lng: double.parse(json['lng'].toString()),
 
-      lat:
-          double.parse(
-        json['lat'].toString(),
-      ),
+      user: UserModel.fromJson(json['user']),
 
-      lng:
-          double.parse(
-        json['lng'].toString(),
-      ),
+      userType: UserTypeModel.fromJson(json['user_type']),
 
-      user:
-          UserModel.fromJson(
-        json['user'],
-      ),
+      city: CityModel.fromJson(json['city']),
 
-      userType:
-          UserTypeModel.fromJson(
-        json['user_type'],
-      ),
-
-      city:
-          CityModel.fromJson(
-        json['city'],
-      ),
-
-      documents:
-          (json['documents'] as List)
-              .map(
-                (e) =>
-                    DocumentsModel.fromJson(e),
-              )
-              .toList(),
-    );
-  }
-}
-
-class BusinessNameModel {
-
-  final String ar;
-
-  final String en;
-
-  BusinessNameModel({
-
-    required this.ar,
-
-    required this.en,
-  });
-
-  factory BusinessNameModel.fromJson(
-    Map<String, dynamic> json,
-  ) {
-
-    return BusinessNameModel(
-
-      ar: json['ar'],
-
-      en: json['en'],
+      documents: json['documents'] != null
+          ? (json['documents'] as List)
+                .map((e) => FileModel.fromJson(e))
+                .toList()
+          : [],
     );
   }
 }

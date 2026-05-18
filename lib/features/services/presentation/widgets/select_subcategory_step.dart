@@ -1,15 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/core/constants/app_colors.dart';
 import 'package:final_servixa/features/categories/presentation/widgets/custom_categories.dart';
-import 'package:final_servixa/features/services/business-logic/controllers/service_controller.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart'hide Trans;
 import 'package:google_fonts/google_fonts.dart';
 
-class SelectCategoryStep extends StatelessWidget {
-  SelectCategoryStep({super.key});
-  final controller = Get.find<ServiceController>();
+class SelectSubCategoryStep extends StatelessWidget {
+  const SelectSubCategoryStep({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +19,7 @@ class SelectCategoryStep extends StatelessWidget {
                   width: 101,
                   height: 101,
                   child: SvgPicture.asset(
-                    'assets/icons/main-categ-icon.svg',
+                    'assets/icons/sub-categ-icon.svg',
                     fit: BoxFit.none,
                     width: 80,
                     height: 80,
@@ -31,7 +28,7 @@ class SelectCategoryStep extends StatelessWidget {
                 ),
                 SizedBox(height: 24),
                 Text(
-                  'service_title_step1'.tr(),
+                  'service_title_step2'.tr(),
                   style: GoogleFonts.roboto(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,

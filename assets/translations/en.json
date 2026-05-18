@@ -104,7 +104,14 @@
     "service_title_step1":"Select the Main Category",
     "service_title_step2":"Select the Sub Category",
     "service_title_step3":"Write Your Ad Details",
+    "service_title_step4":"Add The Location",
 
-    "rate_section_title":"Rate this Ad"
+
+    "rate_section_title":"Rate this Ad",
+
+    "empty_title":"Nothing Here Yet",
+    "empty_subtitle":"No content is available right now. Please try again later."
+
+     
     
 }

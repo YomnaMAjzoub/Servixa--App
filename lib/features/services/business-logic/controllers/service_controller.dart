@@ -4,6 +4,10 @@ import 'package:get/get.dart';
 class ServiceController extends GetxController {
   final PageController pageController = PageController();
   final RxInt currentIndex = 0.obs;
+  final RxBool isloading = false.obs;
+  final RxBool agreeToTerms= false.obs;
+
+
 
   @override
   void onClose() {

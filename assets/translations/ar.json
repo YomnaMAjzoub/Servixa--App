@@ -101,10 +101,13 @@
     "service_title_step1":"اختر الفئة الرئيسية",
     "service_title_step2":"اختر الفئة الفرعية",
     "service_title_step3":"اكتب تفاصيل إعلانك",
+    "service_title_step4":"أضف الموقع",
 
 
-    "rate_section_title":"تقييم الإعلان"
-    
+    "rate_section_title":"تقييم الإعلان",
+
+    "empty_title":"لا يوجد شيء هنا بعد",
+    "empty_subtitle":"لا يوجد محتوى متاح الآن. يرجى المحاولة مرة أخرى لاحقًا."
 
 
 

@@ -1,3 +1,4 @@
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_servixa/common/widgets/elevated_button.dart';
 import 'package:final_servixa/common/widgets/gradient.dart';
@@ -57,7 +58,7 @@ class BusinessProfileScreen extends StatelessWidget {
                 child: PageView(
                   controller: controller.pageController,
                   onPageChanged: controller.onPageChanged,
-                  physics: BouncingScrollPhysics(),
+                  physics:NeverScrollableScrollPhysics() ,
                   children: [
                     SelectUserTypeScreen(),
                     BusinessDetailsScreen(),
@@ -90,10 +91,15 @@ class BusinessProfileScreen extends StatelessWidget {
 
                       Expanded(
                         child: CustomElevated(
-                          text: isLast ? "submit".tr() : "next".tr(),
+                          text:controller.isloading.value
+                          ?"Loading...."
+                          : isLast ? "submit".tr() : "next".tr(),
                           height: 48,
                           width: double.infinity,
-                          onPressed: () {
+                          onPressed: 
+                          controller.isloading.value
+                          ? null
+                          : () {
                             if (isLast) {
                               controller.submitBusiness();
                             } else {

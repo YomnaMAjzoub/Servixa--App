@@ -62,7 +62,7 @@ class MapController extends GetxController {
         ),
       );
 
-      mapController.value?.animateCamera(
+      await mapController.value?.animateCamera(
         CameraUpdate.newLatLng(
           LatLng(
             pos.latitude,
@@ -91,23 +91,43 @@ class MapController extends GetxController {
     LatLng latLng,
   ) async {
 
-    final address =
-        await _service.getAddressFromLatLng(
-      lat: latLng.latitude,
-      lng: latLng.longitude,
-    );
+    try {
 
-    _setLocation(
-      LocationModel(
+      isLoading.value = true;
+
+      update();
+
+      final address =
+          await _service.getAddressFromLatLng(
         lat: latLng.latitude,
         lng: latLng.longitude,
-        address: address,
-      ),
-    );
+      );
 
-    mapController.value?.animateCamera(
-      CameraUpdate.newLatLng(latLng),
-    );
+      _setLocation(
+        LocationModel(
+          lat: latLng.latitude,
+          lng: latLng.longitude,
+          address: address,
+        ),
+      );
+
+      await mapController.value?.animateCamera(
+        CameraUpdate.newLatLng(latLng),
+      );
+
+    } catch (e) {
+
+      Get.snackbar(
+        "Error",
+        e.toString(),
+      );
+
+    } finally {
+
+      isLoading.value = false;
+
+      update();
+    }
   }
 
   void _setLocation(
@@ -131,6 +151,6 @@ class MapController extends GetxController {
       ),
     };
 
-    update(); 
+    update();
   }
 }
